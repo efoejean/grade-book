@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import config from "./config.js";
 
-const client = new MongoClient(config.db.url);
+const client = new MongoClient(config.db.URL);
 
 client
   .connect()
