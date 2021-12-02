@@ -4,10 +4,10 @@ dotenv.config();
 
 export default {
   baseURL: process.env.BASE_URL || "http://localhost:3000",
-
   db: {
-    name: "gradeBookDB",
-    url: process.env.MONGO_DB_URL,
+    URL: process.env.MONGO_DB_URL,
+    name: "gradeBooksDB",
+    collection: "students",
   },
 
   port: process.env.PORT || 3000,
