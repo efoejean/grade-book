@@ -4,7 +4,7 @@ import student from "./student.js";
 const router = new Router();
 
 router.get("/", (_, res) => {
-  res.send("Hello World");
+  res.send("Hello World api");
 });
 
 router.use("/admin", AdminRouter);
