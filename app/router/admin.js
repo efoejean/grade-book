@@ -19,4 +19,15 @@ router.post("/register", async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+// login route
+router.post("/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const token = await adminController.login(username, password);
+    res.json(token, "login success");
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
 export default router;
