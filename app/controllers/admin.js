@@ -26,7 +26,7 @@ export default {
     const user = await admin.findOne({ username });
 
     if (!user) {
-      throw new Error("Unable to login");
+      throw new Error("Unable to login! try again or create an account");
     }
 
     // check if the password is correct
@@ -34,7 +34,7 @@ export default {
     const passwordValid = await bcrypt.compare(password, user.password);
 
     if (!passwordValid) {
-      throw new Error("Unable to login");
+      throw new Error("Unable to login ! try again or create an account");
     }
 
     // generate and return a JWT to be used for future requests by the user
