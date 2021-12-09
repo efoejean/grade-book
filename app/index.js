@@ -1,6 +1,7 @@
 // Entry point for the application
 import express from "express";
 import config from "./config.js";
+import isAuth from "./middleware/isAuth.js";
 import router from "./router/index.js";
 // TODO: Import the routes
 
@@ -13,9 +14,8 @@ app.get("/", (_, res) => {
 // Use json middleware (if needed)
 
 app.use(express.json());
-
+app.use(isAuth);
 //  Mount the routes (maybe 🤔 /api)
-
 app.use("/api", router);
 
 app.listen(config.port, () => {
