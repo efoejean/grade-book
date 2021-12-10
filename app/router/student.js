@@ -8,10 +8,14 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   if (req.isAuth) {
-    const allStudent = await stuController.index();
-    res.json(allStudent);
+    try {
+      const allStudent = await stuController.index();
+      res.json(allStudent);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   } else {
-    res.status(404).json({ message: "Access denied" });
+    res.status(401).json({ message: "Access denied" });
   }
 });
 export default router;
