@@ -19,4 +19,5 @@ router.post("/", async (req, res) => {
     res.status(401).json({ message: "Access denied" });
   }
 });
+
 export default router;
