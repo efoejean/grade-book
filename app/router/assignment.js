@@ -9,7 +9,9 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    if (req.isAuth) {
+    // use isAuth and role is Admin to check if user is admin to access this route
+
+    if (req.isAuth?.role === "ADMIN") {
       const assignment = new Assignment(req.body); // use the constructor to create a new instance of the model
 
       const errors = await assignment.validate(); // validate the model use the model's validate method

@@ -7,7 +7,8 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  if (req.isAuth) {
+  // use isAuth and role is Admin to check if user is admin to access this route
+  if (req.isAuth?.role === "ADMIN") {
     try {
       const allStudent = await stuController.index();
       res.json(allStudent);
