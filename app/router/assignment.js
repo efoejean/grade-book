@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   if (req.isAuth) {
     const createAssignment = await AssignmentController.create(req.body);
-    res.status(201).json({ createAssignment });
+    res.status(201).json(createAssignment);
   } else {
     res.status(401).json({ message: "Unauthorized" });
   }
