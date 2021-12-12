@@ -1,7 +1,7 @@
 export default class Assignment {
-  constructor({ title, minimumPoint }) {
+  constructor({ title, pointsPossible }) {
     this.title = title;
-    this.minimumPoint = minimumPoint;
+    this.pointsPossible = pointsPossible;
   }
 
   validate() {
@@ -10,11 +10,11 @@ export default class Assignment {
       errors.push("Title is required");
     }
 
-    if (!this.minimumPoint) {
+    if (!this.pointsPossible) {
       errors.push("Minimum point is required");
     }
 
-    if (this.minimumPoint < 0) {
+    if (this.pointsPossible < 0) {
       errors.push("Minimum point must be greater than 0");
     }
 

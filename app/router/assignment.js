@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    if (req.isAuth?.role === "admin") {
+    if (req.isAuth) {
       const assignment = new Assignment(req.body); // use the constructor to create a new instance of the model
 
       const errors = await assignment.validate(); // validate the model use the model's validate method
@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
 
       res.status(201).json(createAssignment);
     } else {
-      res.status(401).json({ message: "Unauthorized" });
+      throw new Error("You are not authorized to perform this action");
     }
   } catch ({ message }) {
     res.status(500).send({ message });
