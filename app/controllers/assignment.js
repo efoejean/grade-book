@@ -7,7 +7,8 @@ const students = client.db(config.db.name).collection("students");
 export default {
   async create(newAssignment) {
     const { insertedId } = await Assign.insertOne(newAssignment);
-    await students.updateMany({}, { $push: { grades: newAssignment } });
+
+    await students.updateMany({}, { $push: { grades: newAssignment } }); // add an assignment to all students
     return { insertedId };
   },
 };
