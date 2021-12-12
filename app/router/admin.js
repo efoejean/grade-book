@@ -1,5 +1,6 @@
 import { Router } from "express";
 import adminController from "../controllers/admin.js";
+import Admin from "../models/admin.js";
 
 const router = new Router();
 router.get("/", (req, res) => {
@@ -8,12 +9,20 @@ router.get("/", (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    // destructure the username and password from  req.body
-    const { username, password } = req.body;
-    await adminController.create(username, password);
+    // create new admin
+    const admin = new Admin(req.body);
+
+    // validate admin using the validate method from in Admin model
+    const errors = await admin.validate();
+
+    if (errors.length) {
+      throw new Error(errors.join("\n"));
+    }
+
+    await adminController.create(admin);
 
     // Use the login method in the adminController to login the user
-    const token = await adminController.login(username, password);
+    const token = await adminController.login(admin);
     res.send(token);
   } catch (err) {
     res.status(400).json({ message: err.message });
