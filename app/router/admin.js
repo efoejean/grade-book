@@ -32,9 +32,8 @@ router.post("/register", async (req, res) => {
 // login route
 router.post("/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const token = await adminController.login(username, password);
-    res.json(token, "login success");
+    const token = await adminController.login(req.body);
+    res.status(200).json(token);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
