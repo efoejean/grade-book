@@ -8,6 +8,9 @@ export default {
   index() {
     return stu.find().toArray();
   },
+  show(id) {
+    return stu.findOne({ _id: objectId(id) }); // method to find one student
+  },
 
   // update grade by locating the student using dynamic id and updating the grade in body with  grade id.
   async update(id, grade) {
