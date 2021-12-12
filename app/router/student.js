@@ -20,4 +20,15 @@ router.post("/", async (req, res) => {
   }
 });
 
+// dynamic route using student id and body
+router.post("/grade/:id", async (req, res) => {
+  if (req.isAuth?.role === "ADMIN") {
+    try {
+      const update = await stuController.update(req.params.id, req.body);
+      res.json(update);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+});
 export default router;
