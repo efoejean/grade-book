@@ -5,7 +5,7 @@ import config from "../config.js";
 
 const admin = client.db(config.db.name).collection("admin");
 export default {
-  async create(username, password) {
+  async create({ username, password, role }) {
     // Check for an existing user in the db
     const existingUser = await admin.findOne({ username });
 
@@ -17,11 +17,11 @@ export default {
     // encrypt or Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    return admin.insertOne({ username, password: hashedPassword });
+    return admin.insertOne({ username, password: hashedPassword, role });
   },
 
   // login method
-  async login(username, password) {
+  async login({ username, password }) {
     // find the user by username
     const user = await admin.findOne({ username });
 
@@ -38,7 +38,7 @@ export default {
     }
 
     // generate and return a JWT to be used for future requests by the user
-    return jwt.sign({ username }, config.encryption.secret, {
+    return jwt.sign({ username, role: user.role }, config.encryption.secret, {
       expiresIn: config.encryption.expiresIn,
     });
   },
