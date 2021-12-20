@@ -1,6 +1,6 @@
 import { Router } from "express";
 import adminController from "../controllers/admin.js";
-import Admin from "../models/admin.js";
+import Admin from "../models/Admin.js";
 
 const router = new Router();
 router.get("/", (req, res) => {
