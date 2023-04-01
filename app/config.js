@@ -12,7 +12,7 @@ export default {
   encryption: {
     expiresIn: process.env.EXPIRES_IN || "2d",
     saltRounds: process.env.SALT_ROUNDS || 10,
-    secret: process.env.ENCRYPTION_SECRET || "secret",
+    secret: process.env.ENCRYPTION_SECRET,
   },
 
   port: process.env.PORT || 3000,
