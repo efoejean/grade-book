@@ -1,4 +1,5 @@
 // Entry point for the application
+import cors from "cors";
 import express from "express";
 import config from "./config.js";
 import isAuth from "./middleware/isAuth.js";
@@ -12,7 +13,7 @@ app.get("/", (_, res) => {
 });
 
 // Use json middleware (if needed)
-
+app.use(cors());
 app.use(express.json());
 app.use(isAuth);
 //  Mount the routes (maybe 🤔 /api)
