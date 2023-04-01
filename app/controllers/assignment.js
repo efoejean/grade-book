@@ -1,14 +1,13 @@
-import client from "../client.js";
-import config from "../config.js";
+// import client from "../client.js";
+// import config from "../config.js";
 
-const Assign = client.db(config.db.name).collection("assignments");
-const students = client.db(config.db.name).collection("students");
+// const Assign = client.db(config.db.name).collection("assignments");
+// const students = client.db(config.db.name).collection("students");
 
 export default {
-  async create(newAssignment) {
-    const { insertedId } = await Assign.insertOne(newAssignment);
-
-    await students.updateMany({}, { $push: { grades: newAssignment } }); // add an assignment to all students
-    return { insertedId };
-  },
+  //   async create(newAssignment) {
+  //     const { insertedId } = await Assign.insertOne(newAssignment);
+  //     await students.updateMany({}, { $push: { grades: newAssignment } }); // add an assignment to all students
+  //     return { insertedId };
+  //   },
 };
